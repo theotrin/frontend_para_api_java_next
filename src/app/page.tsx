@@ -1,32 +1,48 @@
-import Container from "react-bootstrap/Container";
+"use client";
 import style from "./page.module.scss";
+import api from "@/services/api";
+import { useEffect, useState } from "react";
+import { ProductType } from "@/types/ProductType";
+import { convertToMoney } from "@/utils/Formatter";
 
 export default function Home() {
+  const [products, setProducts] = useState<ProductType[]>([]);
+
+  async function getProducts() {
+    const response = await api.get<ProductType[]>("/products", {});
+    console.log(response.data);
+    setProducts(response.data);
+    return response.data;
+  }
+
+  useEffect(() => {
+    getProducts();
+  }, []);
+
   return (
-    <div className={style.container}>
-      <h1>Lista de produtos</h1>
-      <div className={style.productsContainer}>
-        <div className={style.productTitle}>
-          <h2 className={style.productName}>Macbook M1</h2>
-          <h2 className={style.productPrice}>Preço: 120000</h2>
-        </div>
-        <div className={style.productDescription}>
-          <p>
-            descrição: Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            Atque nisi et maiores quisquam hic molestiae rerum eaque quaerat
-            voluptate veniam aspernatur eveniet tempora reiciendis a
-            perspiciatis nihil repellat ullam, nostrum earum voluptates saepe
-            soluta rem quam. Voluptatem ratione rem error incidunt similique
-            placeat quis sit architecto molestias recusandae sapiente, soluta,
-            explicabo suscipit, fuga vitae corporis! Distinctio et suscipit
-            corrupti assumenda iure, ratione eligendi quos iste? Voluptates odio
-            amet exercitationem accusantium ullam pariatur commodi ut ea nobis
-            fugiat, id fuga repellat facilis quidem magni ad autem cupiditate?
-            Esse impedit illum ab nemo ipsam, reiciendis perspiciatis quam nulla
-            ex maxime dolorum officia?
-          </p>
+    <>
+      <div className={style.container}>
+        <h1>Lista de produtos</h1>
+
+        <div className={style.productsSection}>
+          {products.map((product) => (
+            <div className={style.productContainer}>
+              <div className={style.productTitle}>
+                <h2 className={style.productName}>{product.name}</h2>
+                <h2 className={style.productPrice}>
+                  {convertToMoney(product.price)}
+                </h2>
+                <div className={style.productDescription}>
+                  <p>
+                    <span>Descrição: </span>
+                    {product.description}
+                  </p>
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
-    </div>
+    </>
   );
 }

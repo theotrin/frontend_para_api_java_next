@@ -1,6 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Poppins:wght@500&display=swap");
 
-.productsContainer {
+.productsSection {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.productContainer {
   background-color: #0066ff;
   color: white;
   width: 80dvw;
@@ -12,6 +18,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
   .productTitle {
     width: 100%;
     display: flex;
@@ -22,6 +29,12 @@
 
   .productPrice {
     font-size: 20px;
+  }
+
+  .productDescription {
+    span {
+      color: burlywood;
+    }
   }
 }
 
