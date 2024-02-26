@@ -1,6 +1,15 @@
+"use client";
+import { HtmlHTMLAttributes, useState } from "react";
 import style from "./create.module.scss";
 
 export default function Create() {
+  const [price, setPrice] = useState();
+
+  const handleChange = (e: any) => {
+    const value = e.target.value.replace(/\D/g, "");
+    setPrice(value);
+  };
+
   return (
     <div className={style.container}>
       <h1>Cadastrar um produto novo!</h1>
@@ -10,7 +19,12 @@ export default function Create() {
       </div>
       <div className={style.priceProduct}>
         <span>Preço: </span>{" "}
-        <input type="number" placeholder="valor do seu produto em centavos" />
+        <input
+          value={price}
+          onChange={handleChange}
+          placeholder="Informe o valor do produto em centavos"
+          min="0"
+        />
       </div>
       <div className={style.descriptionProduct}>
         <span>Descrição: </span>
