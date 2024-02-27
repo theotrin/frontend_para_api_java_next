@@ -120,6 +120,10 @@
 
 .nameProduct,
 .priceProduct {
+  span {
+    padding-right: 20px;
+  }
+
   input {
     width: 600px;
     padding: 10px;
@@ -129,14 +133,19 @@
   }
 }
 
-// .priceProduct input {
-//   width: 250px;
-// }
+.centsExample {
+  position: absolute;
+  top: 36%;
+  right: 22%;
+}
 
 .descriptionProduct {
   input {
     width: 600px;
     height: 200px;
     padding: 10px;
+
+    border: black solid 2px;
+    border-radius: 8px;
   }
 }

@@ -10,8 +10,6 @@ export default function Create() {
   const [descriptionProduct, setDescriptionProduct] = useState("");
   const [open, setOpen] = useState<boolean>(false);
 
-  console.log(open);
-
   const handleChange = (e: any) => {
     const value = e.target.value.replace(/\D/g, "");
     setPrice(value);
@@ -39,7 +37,7 @@ export default function Create() {
         <input
           value={price}
           onChange={handleChange}
-          placeholder="Informe o valor do produto em centavos"
+          placeholder="Informe o valor do produto em reais"
           min="0"
         />
       </div>
@@ -72,7 +70,7 @@ export default function Create() {
               setPrice("");
               return api.post("/products", {
                 name: nameProduct,
-                price: price,
+                price: price * 100,
                 description: descriptionProduct,
               });
             } catch (error) {
