@@ -30,7 +30,7 @@ export default function Home() {
               <div className={style.productTitle}>
                 <h2 className={style.productName}>{product.name}</h2>
                 <h2 className={style.productPrice}>
-                  {convertToMoney(product.price)}
+                  {convertToMoney(product.price / 100)}
                 </h2>
                 <div className={style.productDescription}>
                   <p>
