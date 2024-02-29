@@ -22,23 +22,32 @@ export function DeleteModal({
       <div className={style.background}>
         <div className={style.modal}>
           <h2>Você realmente quer apagar {productName}</h2>
-          <button
-            onClick={() => {
-              setOpen(!open);
-              console.log(productId);
-              api
-                .delete(`/products/${productId}`)
-                .then((response) => {
-                  console.log(`Deleted post with ID ${productId}`);
-                  refreshPage();
-                })
-                .catch((error) => {
-                  console.error(error);
-                });
-            }}
-          >
-            <span>Deletar permanentemente</span>
-          </button>
+          <div className={style.buttonsContainer}>
+            <button
+              onClick={() => {
+                setOpen(!open);
+                console.log(productId);
+                api
+                  .delete(`/products/${productId}`)
+                  .then((response) => {
+                    console.log(`Deleted post with ID ${productId}`);
+                    refreshPage();
+                  })
+                  .catch((error) => {
+                    console.error(error);
+                  });
+              }}
+            >
+              <span>Deletar</span>
+            </button>
+            <button
+              onClick={() => {
+                setOpen(!open);
+              }}
+            >
+              <span>Cancelar</span>
+            </button>
+          </div>
         </div>
       </div>
     );

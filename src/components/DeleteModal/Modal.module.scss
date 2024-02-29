@@ -10,6 +10,11 @@
   height: 100dvh;
 }
 
+.buttonsContainer {
+  display: flex;
+  gap: 25px;
+}
+
 .modal {
   position: absolute;
   top: 50%;
