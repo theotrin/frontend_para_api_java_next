@@ -32,9 +32,6 @@ export default function RootLayout({
               <li>
                 <Link href="/delete">Excluir Produto</Link>
               </li>
-              <li>
-                <Link href="/find">Buscar Produto</Link>
-              </li>
             </ul>
           </div>
         </nav>
